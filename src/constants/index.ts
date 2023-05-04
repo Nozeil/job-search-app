@@ -4,3 +4,8 @@ export const PATHS = {
   VACANCY_PAGE: 'vacancy',
   EMPTY_PAGE: 'empty',
 } as const;
+
+export const COLORS = {
+  GREY_SCALE: 'grey-scale',
+  BLUE_SCALE: 'blue-scale',
+} as const;
