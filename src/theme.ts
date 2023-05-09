@@ -1,10 +1,10 @@
 import { MantineThemeColors } from '@mantine/core';
-import { COLORS } from './constants';
+import { COLORS, FONTS } from './constants';
 
 const { GREY_SCALE, BLUE_SCALE } = COLORS;
 
 export const theme = {
-  fontFamily: 'Inter',
+  fontFamily: FONTS.MAIN,
   black: '#232134',
   colors: {
     [GREY_SCALE]: ['#F5F5F6', '#EAEBED', '#D5D6DC', '#ACADB9', '#7B7C88'],

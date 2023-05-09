@@ -3,21 +3,32 @@ import { Navbar } from '@mantine/core';
 import { NavLink } from 'react-router-dom';
 import { setActiveLinkStyle } from './index.utils';
 
-function NavMenu() {
+interface Props {
+  flexDirection: 'row' | 'column';
+  gap: number;
+  fontSize?: number;
+  closeMenu?: () => void;
+}
+
+export default function NavMenu({ flexDirection, gap, fontSize, closeMenu }: Props) {
   return (
     <Navbar
       h="100%"
       withBorder={false}
-      sx={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 60 }}
+      fz={fontSize}
+      sx={{
+        flexDirection,
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap,
+      }}
     >
-      <NavLink to={PATHS.SEARCH_PAGE} style={setActiveLinkStyle}>
+      <NavLink to={PATHS.SEARCH_PAGE} style={setActiveLinkStyle} onClick={closeMenu}>
         Поиск Вакансий
       </NavLink>
-      <NavLink to={PATHS.FAVORITES_PAGE} style={setActiveLinkStyle}>
+      <NavLink to={PATHS.FAVORITES_PAGE} style={setActiveLinkStyle} onClick={closeMenu}>
         Избранное
       </NavLink>
     </Navbar>
   );
 }
-
-export { NavMenu };
