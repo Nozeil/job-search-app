@@ -6,13 +6,14 @@ import { setActiveLinkStyle } from './index.utils';
 interface Props {
   flexDirection: 'row' | 'column';
   gap: number;
-  fontSize?: number;
+  fontSize?: string;
   closeMenu?: () => void;
 }
 
 export default function NavMenu({ flexDirection, gap, fontSize, closeMenu }: Props) {
   return (
     <Navbar
+      pos="static"
       h="100%"
       withBorder={false}
       fz={fontSize}

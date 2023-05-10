@@ -1,5 +1,5 @@
 import { SIZES } from '@/constants';
-import { createStyles, Group, Burger, Transition, Paper } from '@mantine/core';
+import { createStyles, Group, Burger, Transition, Paper, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import NavMenu from '../NavMenu';
 
@@ -36,7 +36,7 @@ export default function MobileNav() {
       <Transition transition="skew-up" duration={200} mounted={opened}>
         {(styles) => (
           <Paper className={classes.dropdown} withBorder style={styles}>
-            <NavMenu flexDirection="column" gap={20} fontSize={20} closeMenu={close} />
+            <NavMenu flexDirection="column" gap={20} fontSize={rem(20)} closeMenu={close} />
           </Paper>
         )}
       </Transition>

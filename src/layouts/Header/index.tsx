@@ -5,7 +5,7 @@ import { SIZES } from '@/constants';
 
 export default function Header() {
   return (
-    <MantineHeader height={SIZES.HEADER_HEIGHT} mb={40}>
+    <MantineHeader height={SIZES.HEADER_HEIGHT}>
       <Container pos="relative" h="100%" size="lg">
         <Logo />
         <ResponsiveNav />
