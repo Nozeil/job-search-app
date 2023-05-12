@@ -1,5 +1,7 @@
-import { COLORS } from '@/constants';
+import { COLORS_KEYS } from '@/constants';
 import { theme } from '@/theme';
 
-export const ACTIVE_COLOR = theme.colors[COLORS.BLUE_SCALE][5];
-export const DEFAULT_COLOR = theme.black;
+export const COLORS = {
+  ACTIVE: theme.colors[COLORS_KEYS.BLUE_SCALE][5],
+  DEFAULT: theme.black,
+} as const;

@@ -10,7 +10,7 @@ export const FONTS = {
   PRIMARY: 'Poppins',
 } as const;
 
-export const COLORS = {
+export const COLORS_KEYS = {
   GREY_SCALE: 'grey-scale',
   BLUE_SCALE: 'blue-scale',
 } as const;
@@ -18,3 +18,5 @@ export const COLORS = {
 export const SIZES = {
   HEADER_HEIGHT: 84,
 } as const;
+
+export const TRANSITON_DURATION_300 = '300ms';

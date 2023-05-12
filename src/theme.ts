@@ -1,7 +1,7 @@
-import { MantineThemeColors } from '@mantine/core';
-import { COLORS, FONTS } from './constants';
+import { MantineTheme, MantineThemeColors } from '@mantine/core';
+import { COLORS_KEYS, FONTS, TRANSITON_DURATION_300 } from './constants';
 
-const { GREY_SCALE, BLUE_SCALE } = COLORS;
+const { GREY_SCALE, BLUE_SCALE } = COLORS_KEYS;
 
 export const theme = {
   fontFamily: FONTS.MAIN,
@@ -19,4 +19,19 @@ export const theme = {
       },
     },
   },
+  transitionTimingFunction: 'ease-in-out',
+  globalStyles: (theme: MantineTheme) => ({
+    input: {
+      borderColor: theme.colors[GREY_SCALE][3],
+      transitionDuration: TRANSITON_DURATION_300,
+
+      '&:hover, &:focus': {
+        borderColor: theme.colors[BLUE_SCALE][5],
+      },
+      '::placeholder': {
+        fontSize: 14,
+        color: theme.colors[GREY_SCALE][4],
+      },
+    },
+  }),
 } as const;

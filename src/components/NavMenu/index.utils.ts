@@ -1,7 +1,7 @@
-import { ACTIVE_COLOR, DEFAULT_COLOR } from './index.constants';
+import { COLORS } from './index.constants';
 
 export const setActiveLinkStyle = ({ isActive }: { isActive: boolean }) => ({
-  color: isActive ? ACTIVE_COLOR : DEFAULT_COLOR,
+  color: isActive ? COLORS.ACTIVE : COLORS.DEFAULT,
   textDecoration: 'none',
   transition: '0.2s ease-in-out',
 });
