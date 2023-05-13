@@ -1,5 +1,5 @@
-import ResetButton from '@/components/ResetButton';
 import { Group, Title, rem } from '@mantine/core';
+import ResetButton from './ResetButton';
 
 export default function Heading() {
   return (

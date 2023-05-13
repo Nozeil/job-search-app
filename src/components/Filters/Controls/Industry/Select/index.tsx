@@ -1,9 +1,9 @@
-import { Select } from '@mantine/core';
+import { Select as MantineSelect } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useStyles } from './index.hooks';
-import DownIcon from '@/components/DownIcon';
+import DownIcon from '../Icons/DownIcon';
 
-export default function IndustrySelect() {
+export default function Select() {
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles(opened);
 
@@ -22,7 +22,7 @@ export default function IndustrySelect() {
   };
 
   return (
-    <Select
+    <MantineSelect
       data={data}
       classNames={classNames}
       placeholder="Выберете отрасль"

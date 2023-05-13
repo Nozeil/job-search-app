@@ -2,7 +2,7 @@ import { NumberInput, NumberInputHandlers, type NumberInputProps } from '@mantin
 import { useState, useRef } from 'react';
 import Controls from './Controls';
 
-export default function SalaryInput({ placeholder }: NumberInputProps) {
+export default function Input({ placeholder }: NumberInputProps) {
   const [value, setValue] = useState<number | ''>('');
   const handlers = useRef<NumberInputHandlers>();
 

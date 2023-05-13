@@ -1,5 +1,5 @@
 import { Button } from '@mantine/core';
-import ResetIcon from '../ResetIcon';
+import ResetIcon from '../Icons/ResetIcon';
 import { useStyles } from './index.hooks';
 
 export default function ResetButton() {

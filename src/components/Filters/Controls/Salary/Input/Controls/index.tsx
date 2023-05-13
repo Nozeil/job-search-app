@@ -1,6 +1,6 @@
 import { Stack, rem, ActionIcon } from '@mantine/core';
-import DownIcon from './DownIcon';
-import UpIcon from './UpIcon';
+import DownIcon from '../Icons/DownIcon';
+import UpIcon from '../Icons/UpIcon';
 import { useStyles } from './index.hooks';
 
 interface Props {
