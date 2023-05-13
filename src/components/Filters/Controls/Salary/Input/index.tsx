@@ -11,6 +11,7 @@ export default function Input({ placeholder }: NumberInputProps) {
 
   return (
     <NumberInput
+      type="number"
       placeholder={placeholder}
       hideControls
       value={value}

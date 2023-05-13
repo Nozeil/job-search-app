@@ -3,7 +3,7 @@ import ResetButton from './ResetButton';
 
 export default function Heading() {
   return (
-    <Group spacing={66}>
+    <Group spacing={65}>
       <Title size={rem(20)} fw="bold" lh={1}>
         Фильтры
       </Title>
