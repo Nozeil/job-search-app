@@ -1,10 +1,9 @@
-import { Select as MantineSelect } from '@mantine/core';
+import { Select } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useStyles } from './index.hooks';
 import DownIcon from '@/components/DownIcon';
-import Label from './Label';
 
-export default function Select() {
+export default function IndustrySelect() {
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles(opened);
 
@@ -17,14 +16,13 @@ export default function Select() {
   ];
 
   const classNames = {
-    root: classes.root,
     dropdown: classes.dropdown,
     rightSection: classes.rightSection,
     item: classes.item,
   };
 
   return (
-    <MantineSelect
+    <Select
       data={data}
       classNames={classNames}
       placeholder="Выберете отрасль"
@@ -32,7 +30,6 @@ export default function Select() {
       radius="md"
       shadow="none"
       maxDropdownHeight={188}
-      label={<Label />}
       rightSection={<DownIcon className={classes.icon} />}
       transitionProps={{
         transition: 'scale',

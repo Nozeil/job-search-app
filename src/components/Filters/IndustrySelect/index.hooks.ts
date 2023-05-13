@@ -9,10 +9,6 @@ export const useStyles = createStyles((theme, opened: boolean) => {
   const thumbWidthAndHeight = 4;
 
   return {
-    root: {
-      lineHeight: 1.2,
-    },
-
     dropdown: {
       borderWidth: 0,
       borderRadius,
@@ -36,7 +32,7 @@ export const useStyles = createStyles((theme, opened: boolean) => {
     },
 
     icon: {
-      stroke: opened ? theme.colors[COLORS_KEYS.BLUE_SCALE][5] : grey400,
+      stroke: opened ? theme.colors[COLORS_KEYS.BLUE_SCALE][4] : grey400,
       transitionDuration,
     },
 

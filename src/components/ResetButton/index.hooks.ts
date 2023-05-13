@@ -1,13 +1,14 @@
 import { COLORS_KEYS, TRANSITON_DURATION_300 } from '@/constants';
-import { createStyles, getStylesRef } from '@mantine/core';
+import { createStyles } from '@mantine/core';
+import { ICON_REF, SELECTORS } from './index.constants';
 
 export const useStyles = createStyles((theme) => {
   const colors = {
     hover: theme.colors[COLORS_KEYS.BLUE_SCALE][3],
     active: theme.colors[COLORS_KEYS.BLUE_SCALE][4],
+    grey400: theme.colors[COLORS_KEYS.GREY_SCALE][4],
   } as const;
   const transitionDuration = TRANSITON_DURATION_300;
-  const iconRef = 'icon';
 
   return {
     root: {
@@ -15,23 +16,23 @@ export const useStyles = createStyles((theme) => {
       padding: 0,
       border: 0,
       fontWeight: 500,
-      color: theme.colors[COLORS_KEYS.GREY_SCALE][4],
+      color: colors.grey400,
       background: 'transparent',
       transitionDuration,
 
-      '&:hover': {
+      [SELECTORS.ROOT.HOVER]: {
         color: colors.hover,
       },
 
-      '&:active': {
+      [SELECTORS.ROOT.ACTIVE]: {
         color: colors.active,
       },
 
-      [`&:hover .${getStylesRef(iconRef)}`]: {
+      [SELECTORS.ROOT.HOVER_ICON_REF]: {
         stroke: colors.hover,
       },
 
-      [`&:active .${getStylesRef(iconRef)}`]: {
+      [SELECTORS.ROOT.ACTIVE_ICON_REF]: {
         stroke: colors.active,
       },
     },
@@ -41,7 +42,9 @@ export const useStyles = createStyles((theme) => {
     },
 
     icon: {
-      ref: getStylesRef(iconRef),
+      ref: ICON_REF,
+      stroke: colors.grey400,
+      strokeWidth: '1.25',
       transitionDuration,
     },
   };

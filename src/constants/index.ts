@@ -19,4 +19,8 @@ export const SIZES = {
   HEADER_HEIGHT: 84,
 } as const;
 
+export const BUTTON_VARIANTS = {
+  PRIMARY: 'primary',
+};
+
 export const TRANSITON_DURATION_300 = '300ms';
