@@ -4,13 +4,14 @@ import Controls from './Controls';
 import { COLORS_KEYS } from '@/constants';
 
 const sx = (theme: MantineTheme) => ({
+  flexBasis: 315,
   border: `1px solid ${theme.colors[COLORS_KEYS.GREY_SCALE][2]}`,
-  borderRadius: 8,
+  borderRadius: 12,
 });
 
 export default function Filters() {
   return (
-    <Stack spacing={32} p="lg" maw={315} sx={sx}>
+    <Stack spacing={32} p="lg" sx={sx}>
       <Heading />
       <Controls />
     </Stack>

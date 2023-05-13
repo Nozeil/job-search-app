@@ -8,6 +8,7 @@ const INPUT = {
     const blue400 = theme.colors[BLUE_SCALE][4];
     return {
       input: {
+        paddingLeft: 12,
         borderRadius: theme.fn.radius('md'),
         borderColor: theme.colors[GREY_SCALE][3],
         transitionDuration: TRANSITON_DURATION_300,
@@ -18,6 +19,7 @@ const INPUT = {
         },
         '::placeholder': {
           fontSize: 14,
+          lineHeight: 0,
           color: theme.colors[GREY_SCALE][4],
         },
       },
