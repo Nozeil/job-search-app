@@ -1,7 +1,7 @@
+import { ChangeEvent, useState } from 'react';
 import { TextInput } from '@mantine/core';
 import SearchIcon from './Icons/SearchIcon';
 import Button from './Button';
-import { ChangeEvent, useState } from 'react';
 import { useStyles } from './index.hooks';
 
 export default function SearchBar() {
