@@ -1,7 +1,7 @@
 import { COLORS_KEYS } from '@/constants';
-import { MantineTheme, createStyles } from '@mantine/core';
+import { createStyles } from '@mantine/core';
 
-export const useStyles = createStyles((theme: MantineTheme, value: string) => ({
+export const useStyles = createStyles((theme, value: string) => ({
   input: {
     height: 48,
     borderColor: value

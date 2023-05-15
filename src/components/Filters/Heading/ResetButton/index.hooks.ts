@@ -1,6 +1,5 @@
-import { COLORS_KEYS, TRANSITON_DURATION_300 } from '@/constants';
+import { COLORS_KEYS, ICON_REF, SELECTORS, TRANSITON_DURATION_300 } from '@/constants';
 import { createStyles } from '@mantine/core';
-import { ICON_REF, SELECTORS } from './index.constants';
 
 export const useStyles = createStyles((theme) => {
   const colors = {
@@ -9,6 +8,7 @@ export const useStyles = createStyles((theme) => {
     grey400: theme.colors[COLORS_KEYS.GREY_SCALE][4],
   } as const;
   const transitionDuration = TRANSITON_DURATION_300;
+  const { HOVER_ICON_REF, ACTIVE_ICON_REF } = SELECTORS.ICON_BUTTON.ROOT;
 
   return {
     root: {
@@ -20,19 +20,19 @@ export const useStyles = createStyles((theme) => {
       background: 'transparent',
       transitionDuration,
 
-      [SELECTORS.ROOT.HOVER]: {
+      '&:hover': {
         color: colors.hover,
       },
 
-      [SELECTORS.ROOT.ACTIVE]: {
+      '&:active': {
         color: colors.active,
       },
 
-      [SELECTORS.ROOT.HOVER_ICON_REF]: {
+      [HOVER_ICON_REF]: {
         stroke: colors.hover,
       },
 
-      [SELECTORS.ROOT.ACTIVE_ICON_REF]: {
+      [ACTIVE_ICON_REF]: {
         stroke: colors.active,
       },
     },

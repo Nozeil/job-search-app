@@ -1,8 +1,8 @@
 import { COLORS_KEYS, TRANSITON_DURATION_300 } from '@/constants';
-import { MantineTheme, createStyles } from '@mantine/core';
+import { createStyles } from '@mantine/core';
 import { ICON_REFS, SELECTORS } from './index.constants';
 
-export const useStyles = createStyles((theme: MantineTheme) => ({
+export const useStyles = createStyles((theme) => ({
   root: {
     [SELECTORS.HOVER]: {
       stroke: theme.colors[COLORS_KEYS.BLUE_SCALE][3],
