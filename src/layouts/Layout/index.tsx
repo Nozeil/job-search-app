@@ -18,7 +18,7 @@ export default function Layout() {
   } else if (data) {
     content = (
       <AppShell header={<Header />} padding={0} bg={theme.colors[COLORS_KEYS.GREY_SCALE][1]}>
-        <Container size="lg" mt={40}>
+        <Container size="lg" mt={40} mb={44}>
           <Outlet />
         </Container>
       </AppShell>

@@ -1,17 +1,29 @@
-import { AuthWithPasswordResponse } from '@/models';
+import { AuthWithPasswordResponse, SearchResponse } from '@/models';
+import { RootState } from '@/redux/store/index.types';
+import { createSelector } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://startup-summer-2023-proxy.onrender.com/',
+    baseUrl: 'https://startup-summer-2023-proxy.onrender.com/2.0/',
     headers: {
-      'x-secret-key': 'GEU4nvd3rej*jeh.eqp',
+      'X-Secret-Key': 'GEU4nvd3rej*jeh.eqp',
+      'X-Api-App-Id':
+        'v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948',
+    },
+    prepareHeaders: (headers, { getState }) => {
+      const state = getState() as RootState;
+      const { token, type } = selectTokenData(state);
+
+      if (token) {
+        headers.set('Authorization', `${type} ${token}`);
+      }
     },
   }),
   endpoints: (builder) => ({
     authWithPassword: builder.query<AuthWithPasswordResponse, void>({
       query: () => ({
-        url: '2.0/oauth2/password',
+        url: 'oauth2/password',
         params: {
           login: 'sergei.stralenia@gmail.com',
           password: 'paralect123',
@@ -22,16 +34,25 @@ export const api = createApi({
         },
       }),
     }),
-    searchVacancies: builder.query<void, string>({
+    searchVacancies: builder.query<SearchResponse, string>({
       query: (keyword) => ({
         url: 'vacancies',
         params: {
+          published: 1,
+          /* payment_from, (int) */
+          /* payment_to, (int) */
           keyword,
         },
       }),
     }),
   }),
 });
+
+const selectAuthResult = api.endpoints.authWithPassword.select();
+const selectTokenData = createSelector(selectAuthResult, (authResult) => ({
+  token: authResult?.data?.access_token,
+  type: authResult.data?.token_type,
+}));
 
 export const { useAuthWithPasswordQuery, useSearchVacanciesQuery, useLazySearchVacanciesQuery } =
   api;

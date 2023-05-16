@@ -1,30 +1,46 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { TextInput } from '@mantine/core';
 import SearchIcon from './Icons/SearchIcon';
 import Button from './Button';
 import { useStyles } from './index.hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+import { selectSearchValue, setSearchValue } from '@/redux/slices';
 
 export default function SearchBar() {
-  const [value, setValue] = useState('');
+  const defaultValue = useAppSelector(selectSearchValue);
+  const dispatch = useAppDispatch();
+  const [value, setValue] = useState(defaultValue);
+
   const { classes } = useStyles(value);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
   };
 
+  const onKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === 'Enter') {
+      dispatch(setSearchValue(e.currentTarget.value));
+    }
+  };
+
+  const onClick = () => {
+    dispatch(setSearchValue(value));
+  };
+
   return (
     <TextInput
+      value={value}
+      onChange={onChange}
       classNames={{
         input: classes.input,
       }}
       type="search"
-      value={value}
-      onChange={onChange}
+      onKeyUp={onKeyUp}
       placeholder="Введите название вакансии"
       size="md"
       icon={<SearchIcon />}
       iconWidth={35}
-      rightSection={<Button />}
+      rightSection={<Button onClick={onClick} />}
       rightSectionWidth={106}
     />
   );

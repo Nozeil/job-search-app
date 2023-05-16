@@ -1,48 +1,34 @@
 import { Stack } from '@mantine/core';
 import Card from './Card';
+import { useSearchVacanciesQuery } from '@/services';
+import { useAppSelector } from '@/hooks';
+import { selectSearchValue } from '@/redux/slices';
+import DefaultLoader from '../DefaultLoader';
 
 export default function VacanciesList() {
-  const data = [
-    {
-      id: 0,
-      title: 'Менеджер-дизайнер',
-      salary: 'з/п от 70000 rub',
-      type: 'Полный рабочий день',
-      location: 'Новый Уренгой',
-    },
-    {
-      id: 1,
-      title: 'Ведущий графический дизайнер НЕ УДАЛЕННО',
-      salary: 'з/п от 80000 rub',
-      type: 'Полный рабочий день',
-      location: 'Москва',
-    },
-    {
-      id: 2,
-      title: 'Работник декорации, дизайнер (ТЦ Амбар)',
-      salary: 'з/п 29000 rub',
-      type: 'Сменный график работы',
-      location: 'Самара',
-    },
-    {
-      id: 3,
-      title: 'Менеджер-дизайнер',
-      salary: 'з/п 55000 - 95000 rub',
-      type: 'Полный рабочий день',
-      location: 'Тюмень',
-    },
-  ];
-  return (
-    <Stack spacing={16}>
-      {data.map((item) => (
-        <Card
-          key={item.id}
-          title={item.title}
-          salary={item.salary}
-          type={item.type}
-          location={item.location}
-        />
-      ))}
-    </Stack>
-  );
+  const value = useAppSelector(selectSearchValue);
+  const { data, isFetching, isError, error } = useSearchVacanciesQuery(value);
+
+  let content = null;
+
+  if (isFetching) {
+    content = <DefaultLoader />;
+  } else if (isError) {
+    console.error(error);
+  } else if (data) {
+    content = data.objects.map((item) => (
+      <Card
+        key={item.id}
+        id={item.id}
+        profession={item.profession}
+        town={item.town.title}
+        typeOfWork={item.type_of_work.title}
+        paymentFrom={item.payment_from}
+        paymentTo={item.payment_to}
+        currency={item.currency}
+      />
+    ));
+  }
+
+  return <Stack spacing={16}>{content}</Stack>;
 }
