@@ -1,9 +1,13 @@
+import { useRef } from 'react';
 import { NumberInput, NumberInputHandlers, type NumberInputProps } from '@mantine/core';
-import { useState, useRef } from 'react';
 import Controls from './Controls';
+import { NumberInputValue } from '../index.types';
 
-export default function Input({ placeholder }: NumberInputProps) {
-  const [value, setValue] = useState<number | ''>('');
+interface Props extends NumberInputProps {
+  changeHandler: (value: NumberInputValue) => void;
+}
+
+export default function Input({ value, placeholder, changeHandler }: Props) {
   const handlers = useRef<NumberInputHandlers>();
 
   const onUpClick = () => handlers.current?.increment();
@@ -15,7 +19,7 @@ export default function Input({ placeholder }: NumberInputProps) {
       placeholder={placeholder}
       hideControls
       value={value}
-      onChange={(val) => setValue(val)}
+      onChange={(val) => changeHandler(val)}
       handlersRef={handlers}
       size="md"
       min={0}
