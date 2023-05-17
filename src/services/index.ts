@@ -1,4 +1,4 @@
-import { AuthWithPasswordResponse, SearchResponse } from '@/models';
+import { AuthWithPasswordResponse, IndustryCatalogResponse, SearchResponse } from '@/models';
 import { RootState } from '@/redux/store/index.types';
 import { createSelector } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
@@ -39,10 +39,16 @@ export const api = createApi({
         url: 'vacancies',
         params: {
           published: 1,
+          keyword,
           /* payment_from, (int) */
           /* payment_to, (int) */
-          keyword,
+          /* catalogues, (int) */
         },
+      }),
+    }),
+    getIndustryCatalog: builder.query<IndustryCatalogResponse, void>({
+      query: () => ({
+        url: 'catalogues',
       }),
     }),
   }),
@@ -54,5 +60,5 @@ const selectTokenData = createSelector(selectAuthResult, (authResult) => ({
   type: authResult.data?.token_type,
 }));
 
-export const { useAuthWithPasswordQuery, useSearchVacanciesQuery, useLazySearchVacanciesQuery } =
+export const { useAuthWithPasswordQuery, useSearchVacanciesQuery, useGetIndustryCatalogQuery } =
   api;

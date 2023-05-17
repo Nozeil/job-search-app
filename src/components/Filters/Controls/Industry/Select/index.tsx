@@ -1,19 +1,15 @@
-import { Select as MantineSelect } from '@mantine/core';
+import { Select as MantineSelect, SelectProps } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useStyles } from './index.hooks';
 import DownIcon from '../Icons/DownIcon';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+import { getSelectValue, setSelectValue } from '@/redux/slices/Select';
 
-export default function Select() {
+export default function Select({ data, itemComponent }: SelectProps) {
+  const value = useAppSelector(getSelectValue);
+  const dispatch = useAppDispatch();
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles(opened);
-
-  const data = [
-    'IT, интернет, связь, телеком',
-    'Кадры, управление персоналом',
-    'Искусство, культура, развлечения',
-    'Банки, инвестиции, лизинг',
-    'Дизайн',
-  ];
 
   const classNames = {
     dropdown: classes.dropdown,
@@ -21,8 +17,15 @@ export default function Select() {
     item: classes.item,
   };
 
+  const onChange = (value: string) => {
+    dispatch(setSelectValue(value));
+  };
+
   return (
     <MantineSelect
+      value={value}
+      onChange={onChange}
+      itemComponent={itemComponent}
       data={data}
       classNames={classNames}
       placeholder="Выберете отрасль"

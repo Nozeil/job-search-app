@@ -2,7 +2,7 @@ import { Stack } from '@mantine/core';
 import Card from './Card';
 import { useSearchVacanciesQuery } from '@/services';
 import { useAppSelector } from '@/hooks';
-import { selectSearchValue } from '@/redux/slices';
+import { selectSearchValue } from '@/redux/slices/Search';
 import DefaultLoader from '../DefaultLoader';
 
 export default function VacanciesList() {

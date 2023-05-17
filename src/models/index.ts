@@ -23,3 +23,10 @@ export interface SearchResponse {
   objects: Vacancy[];
   total: number;
 }
+
+interface CatalogItem {
+  title: string;
+  key: number;
+}
+
+export type IndustryCatalogResponse = CatalogItem[];
