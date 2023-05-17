@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { NumberInput, NumberInputHandlers, type NumberInputProps } from '@mantine/core';
 import Controls from './Controls';
-import { NumberInputValue } from '../index.types';
+import type { NumberInputValue } from '@/types';
 
 interface Props extends NumberInputProps {
   changeHandler: (value: NumberInputValue) => void;

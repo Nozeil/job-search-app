@@ -1,7 +1,12 @@
-import { AuthWithPasswordResponse, IndustryCatalogResponse, SearchResponse } from '@/models';
-import { RootState } from '@/redux/store/index.types';
 import { createSelector } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import type { RootState } from '@/redux/store/index.types';
+import type {
+  AuthWithPasswordResponse,
+  IndustryCatalogResponse,
+  SearchParams,
+  SearchResponse,
+} from '@/models';
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
@@ -34,17 +39,19 @@ export const api = createApi({
         },
       }),
     }),
-    searchVacancies: builder.query<SearchResponse, string>({
-      query: (keyword) => ({
-        url: 'vacancies',
-        params: {
-          published: 1,
-          keyword,
-          /* payment_from, (int) */
-          /* payment_to, (int) */
-          /* catalogues, (int) */
-        },
-      }),
+    searchVacancies: builder.query<SearchResponse, SearchParams>({
+      query: ({ keyword, from, to, catalogues }) => {
+        return {
+          url: 'vacancies',
+          params: {
+            published: 1,
+            keyword: keyword || undefined,
+            payment_from: from || undefined,
+            payment_to: to || undefined,
+            catalogues: catalogues ?? undefined,
+          },
+        };
+      },
     }),
     getIndustryCatalog: builder.query<IndustryCatalogResponse, void>({
       query: () => ({

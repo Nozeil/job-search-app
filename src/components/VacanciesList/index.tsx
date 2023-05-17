@@ -1,15 +1,34 @@
 import { Stack } from '@mantine/core';
 import Card from './Card';
 import { useSearchVacanciesQuery } from '@/services';
-import { useAppSelector } from '@/hooks';
-import { selectSearchValue } from '@/redux/slices/Search';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import DefaultLoader from '../DefaultLoader';
+import { useEffect } from 'react';
+import { setShouldSearch } from '@/redux/slices/search';
+import { useStore } from 'react-redux';
+import { RootState } from '@/redux/store/index.types';
+import { selectShouldSearch } from '@/redux/selectors';
 
 export default function VacanciesList() {
-  const value = useAppSelector(selectSearchValue);
-  const { data, isFetching, isError, error } = useSearchVacanciesQuery(value);
+  const shouldSearch = useAppSelector(selectShouldSearch);
+  const state = useStore<RootState>().getState();
+  const filters = {
+    keyword: state.search.value,
+    from: state.salary.from,
+    to: state.salary.to,
+    catalogues: state.select.itemKey,
+  };
+  const dispatch = useAppDispatch();
+
+  const { data, isFetching, isError, error } = useSearchVacanciesQuery(filters);
 
   let content = null;
+
+  useEffect(() => {
+    if (shouldSearch) {
+      dispatch(setShouldSearch(false));
+    }
+  }, [dispatch, shouldSearch]);
 
   if (isFetching) {
     content = <DefaultLoader />;

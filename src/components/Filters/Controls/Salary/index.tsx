@@ -2,8 +2,9 @@ import Label from '../Label';
 import Input from './Input';
 import ControlWrapper from '../ControlWrapper';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import { selectSalary, setSalaryFrom, setSalaryTo } from '@/redux/slices/Salary';
-import { NumberInputValue } from './index.types';
+import { setSalaryFrom, setSalaryTo } from '@/redux/slices/salary';
+import { selectSalary } from '@/redux/selectors';
+import type { NumberInputValue } from '@/types';
 
 export default function Salary() {
   const { from, to } = useAppSelector(selectSalary);

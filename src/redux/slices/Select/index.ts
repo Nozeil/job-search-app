@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../store/index.types';
 
 interface SelectState {
   value: string;
@@ -25,6 +24,4 @@ export const selectSlice = createSlice({
 });
 
 export const { setSelectValue, setItemKey } = selectSlice.actions;
-export const getSelectValue = (state: RootState) => state.select.value;
-export const selectItemKey = (state: RootState) => state.select.value;
 export default selectSlice.reducer;

@@ -1,12 +1,13 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../store/index.types';
 
 interface SearchState {
   value: string;
+  shouldSearch: boolean;
 }
 
 const initialState: SearchState = {
   value: '',
+  shouldSearch: false,
 };
 
 export const searchSlice = createSlice({
@@ -15,10 +16,14 @@ export const searchSlice = createSlice({
   reducers: {
     setSearchValue: (state, actionPayload: PayloadAction<string>) => {
       state.value = actionPayload.payload;
+      state.shouldSearch = true;
+    },
+    setShouldSearch: (state, actionPayload: PayloadAction<boolean>) => {
+      state.shouldSearch = actionPayload.payload;
     },
   },
 });
 
-export const { setSearchValue } = searchSlice.actions;
-export const selectSearchValue = (state: RootState) => state.search.value;
+export const { setSearchValue, setShouldSearch } = searchSlice.actions;
+
 export default searchSlice.reducer;

@@ -1,3 +1,5 @@
+import { NumberInputValue } from '@/types';
+
 export interface AuthWithPasswordResponse {
   access_token: string;
   refresh_token: string;
@@ -30,3 +32,10 @@ interface CatalogItem {
 }
 
 export type IndustryCatalogResponse = CatalogItem[];
+
+export type SearchParams = {
+  keyword: string;
+  from: NumberInputValue;
+  to: NumberInputValue;
+  catalogues: number | null;
+};

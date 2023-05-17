@@ -1,17 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { api } from '@/services';
-import searchReducer from '../slices/Search';
-import selectReducer from '../slices/Select';
-import salaryReducer from '../slices/Salary';
+import rootReducer from '../reducer';
 
 export const store = configureStore({
-  reducer: {
-    search: searchReducer,
-    select: selectReducer,
-    salary: salaryReducer,
-    [api.reducerPath]: api.reducer,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
 });
 

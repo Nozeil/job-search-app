@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../store/index.types';
-import type { NumberInputValue } from '@/components/Filters/Controls/Salary/index.types';
+import type { NumberInputValue } from '@/types';
 
 interface SalaryState {
   from: NumberInputValue;
@@ -26,5 +25,4 @@ export const salarySlice = createSlice({
 });
 
 export const { setSalaryFrom, setSalaryTo } = salarySlice.actions;
-export const selectSalary = (state: RootState) => state.salary;
 export default salarySlice.reducer;
