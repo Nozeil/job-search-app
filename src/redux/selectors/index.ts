@@ -11,3 +11,7 @@ export const selectShouldSearch = (state: RootState) => state.controls.shouldSea
 export const getSelectValue = (state: RootState) => state.controls.selectValue;
 
 export const getSelectItemKey = (state: RootState) => state.controls.itemKey;
+
+export const selectCount = (state: RootState) => state.controls.count;
+
+export const selectPage = (state: RootState) => state.controls.page;

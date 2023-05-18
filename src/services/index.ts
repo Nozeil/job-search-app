@@ -40,7 +40,7 @@ export const api = createApi({
       }),
     }),
     searchVacancies: builder.query<SearchResponse, SearchParams>({
-      query: ({ keyword, from, to, catalogues }) => {
+      query: ({ keyword, from, to, catalogues, count, page }) => {
         return {
           url: 'vacancies',
           params: {
@@ -48,7 +48,10 @@ export const api = createApi({
             keyword: keyword || undefined,
             payment_from: from || undefined,
             payment_to: to || undefined,
+            no_agreement: from || to ? 1 : undefined,
             catalogues: catalogues ?? undefined,
+            count,
+            page,
           },
         };
       },

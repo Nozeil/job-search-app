@@ -38,4 +38,6 @@ export type SearchParams = {
   from: NumberInputValue;
   to: NumberInputValue;
   catalogues: number | null;
+  count: number;
+  page: number;
 };

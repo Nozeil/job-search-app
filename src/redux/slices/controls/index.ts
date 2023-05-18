@@ -8,6 +8,8 @@ interface ControlsState {
   from: NumberInputValue;
   to: NumberInputValue;
   itemKey: number | null;
+  page: number;
+  count: number;
 }
 
 const initialState: ControlsState = {
@@ -17,6 +19,8 @@ const initialState: ControlsState = {
   to: '',
   itemKey: null,
   shouldSearch: false,
+  page: 1,
+  count: 4,
 };
 
 export const controlsSlice = createSlice({
@@ -25,10 +29,15 @@ export const controlsSlice = createSlice({
   reducers: {
     setSearchValue: (state, actionPayload: PayloadAction<string>) => {
       state.searchValue = actionPayload.payload;
+      state.page = 1;
       state.shouldSearch = true;
     },
-    setShouldSearch: (state, actionPayload: PayloadAction<boolean>) => {
-      state.shouldSearch = actionPayload.payload;
+    setShouldSearchTrue: (state) => {
+      state.page = 1;
+      state.shouldSearch = true;
+    },
+    setShouldSearchFalse: (state) => {
+      state.shouldSearch = false;
     },
     setSelectValue: (state, actionPayload: PayloadAction<string>) => {
       state.selectValue = actionPayload.payload;
@@ -42,23 +51,30 @@ export const controlsSlice = createSlice({
     setSalaryTo: (state, actionPayload: PayloadAction<NumberInputValue>) => {
       state.to = actionPayload.payload;
     },
+    setPage: (state, actionPayload: PayloadAction<number>) => {
+      state.page = actionPayload.payload;
+      state.shouldSearch = true;
+    },
     resetFilters: (state) => {
       state.selectValue = '';
       state.from = '';
       state.to = '';
       state.itemKey = null;
       state.shouldSearch = true;
+      state.page = 1;
     },
   },
 });
 
 export const {
   setSearchValue,
-  setShouldSearch,
+  setShouldSearchTrue,
+  setShouldSearchFalse,
   setSalaryFrom,
   setSalaryTo,
   setSelectValue,
   setItemKey,
+  setPage,
   resetFilters,
 } = controlsSlice.actions;
 export default controlsSlice.reducer;

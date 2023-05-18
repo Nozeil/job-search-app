@@ -7,16 +7,19 @@ import { useEffect } from 'react';
 import { useStore } from 'react-redux';
 import { RootState } from '@/redux/store/index.types';
 import { selectShouldSearch } from '@/redux/selectors';
-import { setShouldSearch } from '@/redux/slices/controls';
+import { setShouldSearchFalse } from '@/redux/slices/controls';
+import Pagination from '../Pagination';
 
 export default function VacanciesList() {
   const shouldSearch = useAppSelector(selectShouldSearch);
-  const state = useStore<RootState>().getState();
+  const { controls } = useStore<RootState>().getState();
   const filters = {
-    keyword: state.controls.searchValue,
-    from: state.controls.from,
-    to: state.controls.to,
-    catalogues: state.controls.itemKey,
+    keyword: controls.searchValue,
+    from: controls.from,
+    to: controls.to,
+    catalogues: controls.itemKey,
+    count: controls.count,
+    page: controls.page,
   };
   const dispatch = useAppDispatch();
 
@@ -26,7 +29,7 @@ export default function VacanciesList() {
 
   useEffect(() => {
     if (shouldSearch) {
-      dispatch(setShouldSearch(false));
+      dispatch(setShouldSearchFalse());
     }
   }, [dispatch, shouldSearch]);
 
@@ -35,7 +38,7 @@ export default function VacanciesList() {
   } else if (isError) {
     console.error(error);
   } else if (data) {
-    content = data.objects.map((item) => (
+    const cards = data.objects.map((item) => (
       <Card
         key={item.id}
         id={item.id}
@@ -47,6 +50,12 @@ export default function VacanciesList() {
         currency={item.currency}
       />
     ));
+    content = (
+      <>
+        {cards}
+        <Pagination total={data.total} />
+      </>
+    );
   }
 
   return <Stack spacing={16}>{content}</Stack>;

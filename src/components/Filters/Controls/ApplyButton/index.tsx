@@ -1,13 +1,13 @@
 import { BUTTON_VARIANTS } from '@/constants';
 import { useAppDispatch } from '@/hooks';
-import { setShouldSearch } from '@/redux/slices/controls';
+import { setShouldSearchTrue } from '@/redux/slices/controls';
 import { Button } from '@mantine/core';
 
 export default function ApplyButton() {
   const dispatch = useAppDispatch();
 
   const onClick = () => {
-    dispatch(setShouldSearch(true));
+    dispatch(setShouldSearchTrue());
   };
 
   return (
