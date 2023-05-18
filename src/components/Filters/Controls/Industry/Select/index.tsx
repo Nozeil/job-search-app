@@ -3,7 +3,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { useStyles } from './index.hooks';
 import DownIcon from '../Icons/DownIcon';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import { setSelectValue } from '@/redux/slices/select';
+import { setSelectValue } from '@/redux/slices/controls';
 import { getSelectValue } from '@/redux/selectors';
 
 export default function Select({ data, itemComponent }: SelectProps) {

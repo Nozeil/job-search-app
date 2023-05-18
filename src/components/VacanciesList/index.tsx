@@ -4,19 +4,19 @@ import { useSearchVacanciesQuery } from '@/services';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import DefaultLoader from '../DefaultLoader';
 import { useEffect } from 'react';
-import { setShouldSearch } from '@/redux/slices/search';
 import { useStore } from 'react-redux';
 import { RootState } from '@/redux/store/index.types';
 import { selectShouldSearch } from '@/redux/selectors';
+import { setShouldSearch } from '@/redux/slices/controls';
 
 export default function VacanciesList() {
   const shouldSearch = useAppSelector(selectShouldSearch);
   const state = useStore<RootState>().getState();
   const filters = {
-    keyword: state.search.value,
-    from: state.salary.from,
-    to: state.salary.to,
-    catalogues: state.select.itemKey,
+    keyword: state.controls.searchValue,
+    from: state.controls.from,
+    to: state.controls.to,
+    catalogues: state.controls.itemKey,
   };
   const dispatch = useAppDispatch();
 

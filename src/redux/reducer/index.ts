@@ -1,13 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import searchReducer from '../slices/search';
-import selectReducer from '../slices/select';
-import salaryReducer from '../slices/salary';
+import controlsReducer from '../slices/controls';
 import { api } from '@/services';
 
 const rootReducer = combineReducers({
-  search: searchReducer,
-  select: selectReducer,
-  salary: salaryReducer,
+  controls: controlsReducer,
   [api.reducerPath]: api.reducer,
 });
 

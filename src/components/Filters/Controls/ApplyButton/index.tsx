@@ -1,6 +1,6 @@
 import { BUTTON_VARIANTS } from '@/constants';
 import { useAppDispatch } from '@/hooks';
-import { setShouldSearch } from '@/redux/slices/search';
+import { setShouldSearch } from '@/redux/slices/controls';
 import { Button } from '@mantine/core';
 
 export default function ApplyButton() {

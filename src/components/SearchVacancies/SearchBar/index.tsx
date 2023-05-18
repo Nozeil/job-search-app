@@ -4,8 +4,8 @@ import SearchIcon from './Icons/SearchIcon';
 import Button from './Button';
 import { useStyles } from './index.hooks';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import { setSearchValue } from '@/redux/slices/search';
 import { selectSearchValue } from '@/redux/selectors';
+import { setSearchValue } from '@/redux/slices/controls';
 
 export default function SearchBar() {
   const defaultValue = useAppSelector(selectSearchValue);

@@ -1,11 +1,13 @@
 import type { RootState } from '../store/index.types';
 
-export const selectSalary = (state: RootState) => state.salary;
+export const selectSalaryFrom = (state: RootState) => state.controls.from;
 
-export const selectSearchValue = (state: RootState) => state.search.value;
+export const selectSalaryTo = (state: RootState) => state.controls.to;
 
-export const selectShouldSearch = (state: RootState) => state.search.shouldSearch;
+export const selectSearchValue = (state: RootState) => state.controls.searchValue;
 
-export const getSelectValue = (state: RootState) => state.select.value;
+export const selectShouldSearch = (state: RootState) => state.controls.shouldSearch;
 
-export const getSelectItemKey = (state: RootState) => state.select.itemKey;
+export const getSelectValue = (state: RootState) => state.controls.selectValue;
+
+export const getSelectItemKey = (state: RootState) => state.controls.itemKey;
