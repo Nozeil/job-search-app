@@ -1,37 +1,23 @@
+import { useEffect } from 'react';
 import { Stack } from '@mantine/core';
 import Card from './Card';
 import { useSearchVacanciesQuery } from '@/services';
-import { useAppDispatch, useAppSelector } from '@/hooks';
 import DefaultLoader from '../DefaultLoader';
-import { useEffect } from 'react';
-import { useStore } from 'react-redux';
-import { RootState } from '@/redux/store/index.types';
-import { selectShouldSearch } from '@/redux/selectors';
-import { setShouldSearchFalse } from '@/redux/slices/controls';
 import Pagination from '../Pagination';
+import Button from './Button';
+import { useFilters } from '@/hooks/useFilters';
+import { useShouldSearch } from '@/hooks/useShouldSearch';
+import { setInitialFavoriteIds } from './index.utils';
 
 export default function VacanciesList() {
-  const shouldSearch = useAppSelector(selectShouldSearch);
-  const { controls } = useStore<RootState>().getState();
-  const filters = {
-    keyword: controls.searchValue,
-    from: controls.from,
-    to: controls.to,
-    catalogues: controls.itemKey,
-    count: controls.count,
-    page: controls.page,
-  };
-  const dispatch = useAppDispatch();
+  const filters = useFilters();
+  useShouldSearch();
 
   const { data, isFetching, isError, error } = useSearchVacanciesQuery(filters);
 
   let content = null;
 
-  useEffect(() => {
-    if (shouldSearch) {
-      dispatch(setShouldSearchFalse());
-    }
-  }, [dispatch, shouldSearch]);
+  useEffect(setInitialFavoriteIds, []);
 
   if (isFetching) {
     content = <DefaultLoader />;
@@ -48,6 +34,7 @@ export default function VacanciesList() {
         paymentFrom={item.payment_from}
         paymentTo={item.payment_to}
         currency={item.currency}
+        button={<Button id={item.id} />}
       />
     ));
     content = (

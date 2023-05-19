@@ -1,5 +1,5 @@
 import { BUTTON_VARIANTS } from '@/constants';
-import { useAppDispatch } from '@/hooks';
+import { useAppDispatch } from '@/hooks/redux';
 import { setShouldSearchTrue } from '@/redux/slices/controls';
 import { Button } from '@mantine/core';
 

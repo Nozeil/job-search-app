@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, forwardRef, MouseEvent } from 'react';
-import { useAppDispatch } from '@/hooks';
+import { useAppDispatch } from '@/hooks/redux';
 import { setItemKey } from '@/redux/slices/controls';
 
 interface ItemProps extends ComponentPropsWithoutRef<'div'> {

@@ -2,7 +2,7 @@ import { Select as MantineSelect, SelectProps } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useStyles } from './index.hooks';
 import DownIcon from '../Icons/DownIcon';
-import { useAppDispatch, useAppSelector } from '@/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { setSelectValue } from '@/redux/slices/controls';
 import { getSelectValue } from '@/redux/selectors';
 

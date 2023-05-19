@@ -1,10 +1,10 @@
 import { getXsSolidBorderStyles } from '@/utils';
 import { Card as MantineCard, Text, Stack } from '@mantine/core';
-import Button from './Button';
 import Heading from './Heading';
 import Info from './Info';
 import Location from './Location';
 import { createSalary } from './index.utils';
+import { ReactElement } from 'react';
 
 interface Props {
   id: number;
@@ -14,15 +14,18 @@ interface Props {
   paymentTo: number;
   paymentFrom: number;
   currency: string;
+  button: ReactElement;
 }
 
 export default function Card({
+  id,
   profession,
   town,
   typeOfWork,
   paymentFrom,
   paymentTo,
   currency,
+  button,
 }: Props) {
   const salary = createSalary(paymentFrom, paymentTo, currency);
 
@@ -40,7 +43,7 @@ export default function Card({
         />
         <Location afterIcon={<Text lh={1.25}>{town}</Text>} />
       </Stack>
-      <Button />
+      {button}
     </MantineCard>
   );
 }

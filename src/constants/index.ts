@@ -37,3 +37,7 @@ export const SELECTORS = {
     },
   },
 } as const;
+
+export const LS_KEYS = {
+  IDS: 'ids',
+} as const;

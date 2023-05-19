@@ -1,7 +1,7 @@
 import { Button } from '@mantine/core';
 import ResetIcon from '../Icons/ResetIcon';
 import { useStyles } from './index.hooks';
-import { useAppDispatch } from '@/hooks';
+import { useAppDispatch } from '@/hooks/redux';
 import { resetFilters } from '@/redux/slices/controls';
 
 export default function ResetButton() {

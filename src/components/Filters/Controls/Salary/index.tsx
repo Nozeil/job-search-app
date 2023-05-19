@@ -1,7 +1,7 @@
 import Label from '../Label';
 import Input from './Input';
 import ControlWrapper from '../ControlWrapper';
-import { useAppDispatch, useAppSelector } from '@/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { setSalaryFrom, setSalaryTo } from '@/redux/slices/controls';
 import type { NumberInputValue } from '@/types';
 import { selectSalaryFrom, selectSalaryTo } from '@/redux/selectors';

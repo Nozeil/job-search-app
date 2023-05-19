@@ -3,7 +3,7 @@ import { TextInput } from '@mantine/core';
 import SearchIcon from './Icons/SearchIcon';
 import Button from './Button';
 import { useStyles } from './index.hooks';
-import { useAppDispatch, useAppSelector } from '@/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { selectSearchValue } from '@/redux/selectors';
 import { setSearchValue } from '@/redux/slices/controls';
 
