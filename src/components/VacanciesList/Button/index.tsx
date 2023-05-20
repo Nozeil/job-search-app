@@ -1,8 +1,12 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useLayoutEffect, useMemo, useState } from 'react';
 import { ActionIcon } from '@mantine/core';
 import StarIcon from '../Card/Icons/StarIcon';
 import { useStyles } from './index.hooks';
 import { effectHandler, clickHandler } from './index.utils';
+import { useAppDispatch } from '@/hooks/redux';
+import { setIdsAndPage } from '@/redux/slices/favorites';
+import { useLocation } from 'react-router-dom';
+import { PATHS } from '@/constants';
 
 interface Props {
   id: number;
@@ -11,11 +15,17 @@ interface Props {
 export default function Button({ id }: Props) {
   const [isFavorite, setIsFavorite] = useState(false);
   const { classes } = useStyles(isFavorite);
+  const dispatch = useAppDispatch();
   const handlerArgs = useMemo(() => ({ id, setIsFavorite }), [id]);
+  const location = useLocation();
 
-  useEffect(() => effectHandler(handlerArgs), [handlerArgs]);
+  useLayoutEffect(() => effectHandler(handlerArgs), [handlerArgs]);
 
-  const onClick = () => clickHandler(handlerArgs);
+  const onClick = () => {
+    location.pathname === PATHS.FAVORITES_PAGE
+      ? clickHandler(handlerArgs, (ids) => dispatch(setIdsAndPage(ids)))
+      : clickHandler(handlerArgs);
+  };
 
   return (
     <ActionIcon

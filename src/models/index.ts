@@ -21,10 +21,18 @@ interface Vacancy {
   payment_from: number;
   currency: string;
 }
+
+export type Vacancys = Vacancy[];
 export interface SearchResponse {
-  objects: Vacancy[];
+  objects: Vacancys;
   total: number;
 }
+
+export interface EmptySearchByIdsResponse {
+  objects: never[];
+  total: number;
+}
+export type SearchByIdsResponse = SearchResponse | EmptySearchByIdsResponse;
 
 interface CatalogItem {
   title: string;
@@ -40,4 +48,13 @@ export type SearchParams = {
   catalogues: number | null;
   count: number;
   page: number;
+};
+
+export type SearchByIdsParams = {
+  ids: {
+    ids: { [k: string]: number };
+    size: number;
+  };
+  page: number;
+  count: number;
 };

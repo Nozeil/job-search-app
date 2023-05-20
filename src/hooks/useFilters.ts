@@ -9,7 +9,7 @@ export const useFilters = () => {
     to: controls.to,
     catalogues: controls.itemKey,
     count: controls.count,
-    page: controls.page,
+    page: controls.page - 1,
   };
 
   return filters;

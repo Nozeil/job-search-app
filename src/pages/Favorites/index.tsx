@@ -1,3 +1,5 @@
+import FavoritesVacancies from '@/components/FavoritesVacancies';
+
 export default function FavoritesPage() {
-  return <div>Favorites</div>;
+  return <FavoritesVacancies />;
 }

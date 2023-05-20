@@ -2,9 +2,9 @@ import { getStylesRef } from '@mantine/core';
 
 export const PATHS = {
   SEARCH_PAGE: '/',
-  FAVORITES_PAGE: 'favorites',
-  VACANCY_PAGE: 'vacancy',
-  EMPTY_PAGE: 'empty',
+  FAVORITES_PAGE: '/favorites',
+  VACANCY_PAGE: '/vacancy',
+  EMPTY_PAGE: '/empty',
 } as const;
 
 export const FONTS = {

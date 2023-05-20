@@ -1,12 +1,20 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {
+  type FetchBaseQueryError,
+  type FetchBaseQueryMeta,
+  createApi,
+  fetchBaseQuery,
+} from '@reduxjs/toolkit/query/react';
 import type { RootState } from '@/redux/store/index.types';
 import type {
   AuthWithPasswordResponse,
   IndustryCatalogResponse,
+  SearchByIdsParams,
+  SearchByIdsResponse,
   SearchParams,
   SearchResponse,
 } from '@/models';
+import type { QueryReturnValue } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
@@ -56,6 +64,33 @@ export const api = createApi({
         };
       },
     }),
+    searchVacanciesByIds: builder.query<SearchByIdsResponse, SearchByIdsParams>({
+      queryFn: async ({ ids, page, count }, _, __, baseQuery) => {
+        if (!ids.size) {
+          return {
+            data: {
+              objects: [],
+              total: 0,
+            },
+          };
+        } else {
+          const result = await baseQuery({
+            url: 'vacancies',
+            params: {
+              published: 1,
+              ...ids.ids,
+              page,
+              count,
+            },
+          });
+          return result as QueryReturnValue<
+            SearchByIdsResponse,
+            FetchBaseQueryError,
+            FetchBaseQueryMeta
+          >;
+        }
+      },
+    }),
     getIndustryCatalog: builder.query<IndustryCatalogResponse, void>({
       query: () => ({
         url: 'catalogues',
@@ -70,5 +105,9 @@ const selectTokenData = createSelector(selectAuthResult, (authResult) => ({
   type: authResult.data?.token_type,
 }));
 
-export const { useAuthWithPasswordQuery, useSearchVacanciesQuery, useGetIndustryCatalogQuery } =
-  api;
+export const {
+  useAuthWithPasswordQuery,
+  useSearchVacanciesQuery,
+  useSearchVacanciesByIdsQuery,
+  useGetIndustryCatalogQuery,
+} = api;

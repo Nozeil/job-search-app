@@ -12,6 +12,12 @@ export const getSelectValue = (state: RootState) => state.controls.selectValue;
 
 export const getSelectItemKey = (state: RootState) => state.controls.itemKey;
 
-export const selectCount = (state: RootState) => state.controls.count;
+export const selectSearchCount = (state: RootState) => state.controls.count;
 
-export const selectPage = (state: RootState) => state.controls.page;
+export const selectFavoritesCount = (state: RootState) => state.favorites.count;
+
+export const selectSearchPaginationPage = (state: RootState) => state.controls.page;
+
+export const selectFavoritesPaginationPage = (state: RootState) => state.favorites.page;
+
+export const selectIds = (state: RootState) => state.favorites.ids;

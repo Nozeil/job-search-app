@@ -1,34 +1,23 @@
-import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { selectPage } from '@/redux/selectors';
-import { setPage } from '@/redux/slices/controls';
 import { PaginationProps, Pagination as MantinePagination } from '@mantine/core';
 import { useStyles } from './index.hooks';
 import NextIcon from './Icons/NextIcon';
 import PrevIcon from './Icons/PrevIcon';
-import { useCalcTotal } from '@/hooks/useCalcTotal';
 
-export default function Pagination({ total }: PaginationProps) {
-  const calculatedTotal = useCalcTotal(total);
-  const page = useAppSelector(selectPage);
-  const dispatch = useAppDispatch();
+export default function Pagination({ total, value, onChange, mt }: PaginationProps) {
   const { classes } = useStyles();
 
-  const onChange = (page: number) => {
-    dispatch(setPage(page));
-  };
-
-  return (
+  return total > 1 ? (
     <MantinePagination
       classNames={{
         control: classes.control,
       }}
-      value={page}
+      value={value}
       onChange={onChange}
-      total={calculatedTotal}
+      total={total}
       position="center"
-      mt={24}
+      mt={mt}
       previousIcon={PrevIcon}
       nextIcon={NextIcon}
     />
-  );
+  ) : null;
 }
