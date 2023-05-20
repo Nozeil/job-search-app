@@ -8,8 +8,9 @@ export const PATHS = {
 } as const;
 
 export const FONTS = {
-  MAIN: 'Inter',
-  PRIMARY: 'Poppins',
+  MAIN: 'Inter, sans-serif',
+  PRIMARY: 'Poppins, sans-serif',
+  EMPTY_STATE_BUTTON: 'Open Sans, sans-serif',
 } as const;
 
 export const COLORS_KEYS = {
