@@ -18,7 +18,7 @@ import type { QueryReturnValue } from '@reduxjs/toolkit/dist/query/baseQueryType
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://startup-summer-2023-proxy.onrender.com/2.0/',
+    baseUrl: 'https://startup-summer-proxy-production.up.railway.app/2.0/',
     headers: {
       'X-Secret-Key': 'GEU4nvd3rej*jeh.eqp',
       'X-Api-App-Id':

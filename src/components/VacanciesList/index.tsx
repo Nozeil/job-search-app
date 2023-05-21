@@ -4,12 +4,14 @@ import Card from './Card';
 import Button from './Button';
 import { setInitialFavoriteIds } from './index.utils';
 import { Vacancys } from '@/models';
+import useEmptyStateRedirect from '@/hooks/useEmptyStateRedirect';
 
 interface Props {
   data: Vacancys;
 }
 
 export default function VacanciesList({ data, children }: PropsWithChildren<Props>) {
+  useEmptyStateRedirect(data);
   useEffect(setInitialFavoriteIds, []);
 
   const cards = data.map((item) => (

@@ -4,7 +4,7 @@ import StarIcon from '../Card/Icons/StarIcon';
 import { useStyles } from './index.hooks';
 import { effectHandler, clickHandler } from './index.utils';
 import { useAppDispatch } from '@/hooks/redux';
-import { setIdsAndPage } from '@/redux/slices/favorites';
+import { setIds, setIdsAndPage } from '@/redux/slices/favorites';
 import { useLocation } from 'react-router-dom';
 import { PATHS } from '@/constants';
 
@@ -24,7 +24,7 @@ export default function Button({ id }: Props) {
   const onClick = () => {
     location.pathname === PATHS.FAVORITES_PAGE
       ? clickHandler(handlerArgs, (ids) => dispatch(setIdsAndPage(ids)))
-      : clickHandler(handlerArgs);
+      : clickHandler(handlerArgs, (ids) => dispatch(setIds(ids)));
   };
 
   return (
