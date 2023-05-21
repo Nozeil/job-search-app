@@ -30,6 +30,7 @@ export default function SearchBar() {
 
   return (
     <TextInput
+      data-elem="search-input"
       value={value}
       onChange={onChange}
       classNames={{

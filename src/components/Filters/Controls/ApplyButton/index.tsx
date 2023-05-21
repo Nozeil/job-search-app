@@ -11,7 +11,7 @@ export default function ApplyButton() {
   };
 
   return (
-    <Button variant={BUTTON_VARIANTS.PRIMARY} h={40} onClick={onClick}>
+    <Button data-elem="search-button" variant={BUTTON_VARIANTS.PRIMARY} h={40} onClick={onClick}>
       Примeнить
     </Button>
   );

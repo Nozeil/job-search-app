@@ -21,8 +21,13 @@ export default function Salary() {
   return (
     <ControlWrapper spacing={8}>
       <Label>Оклад</Label>
-      <Input value={from} placeholder="От" changeHandler={salaryFromHandler} />
-      <Input value={to} placeholder="До" changeHandler={salaryToHandler} />
+      <Input
+        testId="salary-from-input"
+        value={from}
+        placeholder="От"
+        changeHandler={salaryFromHandler}
+      />
+      <Input testId="salary-to-input" value={to} placeholder="До" changeHandler={salaryToHandler} />
     </ControlWrapper>
   );
 }

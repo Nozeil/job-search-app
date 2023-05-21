@@ -16,7 +16,7 @@ export default function CardWrapper({ id, card }: Props) {
   };
 
   return (
-    <Box onClick={onClick} sx={{ cursor: 'pointer' }}>
+    <Box data-elem={`vacancy-${id}`} onClick={onClick} sx={{ cursor: 'pointer' }}>
       {card}
     </Box>
   );

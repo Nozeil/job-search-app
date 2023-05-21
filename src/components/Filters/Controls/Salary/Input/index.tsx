@@ -5,9 +5,10 @@ import type { NumberInputValue } from '@/types';
 
 interface Props extends NumberInputProps {
   changeHandler: (value: NumberInputValue) => void;
+  testId: string;
 }
 
-export default function Input({ value, placeholder, changeHandler }: Props) {
+export default function Input({ testId, value, placeholder, changeHandler }: Props) {
   const handlers = useRef<NumberInputHandlers>();
 
   const onUpClick = () => handlers.current?.increment();
@@ -15,6 +16,7 @@ export default function Input({ value, placeholder, changeHandler }: Props) {
 
   return (
     <NumberInput
+      data-elem={testId}
       type="number"
       placeholder={placeholder}
       hideControls

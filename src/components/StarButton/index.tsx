@@ -30,6 +30,7 @@ export default function StarButton({ id }: Props) {
 
   return (
     <ActionIcon
+      data-elem={`vacancy-${id}-shortlist-button`}
       className={classes.root}
       variant="transparent"
       pos="absolute"

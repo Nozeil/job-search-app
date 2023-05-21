@@ -8,7 +8,14 @@ interface Props {
 
 export default function Button({ onClick }: Props) {
   return (
-    <MantineButton variant={BUTTON_VARIANTS.PRIMARY} h={32} px={20} py={5.5} onClick={onClick}>
+    <MantineButton
+      data-elem="search-button"
+      variant={BUTTON_VARIANTS.PRIMARY}
+      h={32}
+      px={20}
+      py={5.5}
+      onClick={onClick}
+    >
       Поиск
     </MantineButton>
   );

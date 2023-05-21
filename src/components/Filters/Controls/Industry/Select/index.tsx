@@ -24,6 +24,7 @@ export default function Select({ data, itemComponent }: SelectProps) {
 
   return (
     <MantineSelect
+      data-elem="industry-select"
       value={value}
       onChange={onChange}
       itemComponent={itemComponent}
