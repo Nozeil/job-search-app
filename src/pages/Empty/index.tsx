@@ -6,7 +6,7 @@ export default function EmptyPage() {
   return (
     <Stack mt={120} spacing={32} align="center">
       <Image src={empty} width={240} height={230} alt="empty" />
-      <Title size={rem(24)} fw="bold" color="#343A40">
+      <Title size={rem(24)} fw="bold" align="center" color="#343A40">
         Упс, здесь еще ничего нет!
       </Title>
       <EmptyStateButton />

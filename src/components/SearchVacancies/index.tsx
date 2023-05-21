@@ -7,8 +7,11 @@ import { useShouldSearch } from '@/hooks/useShouldSearch';
 import { useSearchVacanciesQuery } from '@/services';
 import DefaultLoader from '../DefaultLoader';
 import SearchPagination from './SearchPagination';
+import Filters from '../Filters';
+import useSmallScreenMediaQuery from '@/hooks/useSmallScreenMediaQuery';
 
 export default function SearchVacancies() {
+  const { component: topComponent } = useSmallScreenMediaQuery(<SearchBar />, <Filters />);
   const filters = useFilters();
   useShouldSearch();
 
@@ -30,7 +33,7 @@ export default function SearchVacancies() {
 
   return (
     <Stack style={STYLE}>
-      <SearchBar />
+      {topComponent}
       {content}
     </Stack>
   );

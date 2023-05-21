@@ -13,7 +13,7 @@ export const useStyles = createStyles(() => ({
     left: 0,
     right: 0,
     zIndex: 0,
-    height: '50vh',
+    height: `calc(100vh - ${SIZES.HEADER_HEIGHT}px)`,
     minHeight: 200,
     padding: 20,
     borderTopRightRadius: 0,

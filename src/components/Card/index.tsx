@@ -13,7 +13,7 @@ interface Props {
 export default function Card({ town, button, heading, info }: Props) {
   return (
     <MantineCard pos="relative" padding={24} sx={getXsSolidBorderStyles}>
-      <Stack spacing="sm" pr={24}>
+      <Stack spacing="sm" pr={30}>
         {heading}
         {info}
         <Location afterIcon={<Text lh={1.25}>{town}</Text>} />

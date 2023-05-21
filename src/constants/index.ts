@@ -42,3 +42,7 @@ export const SELECTORS = {
 export const LS_KEYS = {
   IDS: 'ids',
 } as const;
+
+export const MEDIA_QUERIES = {
+  SMALL: '(max-width: 810px)',
+} as const;
