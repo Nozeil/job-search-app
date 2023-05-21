@@ -13,6 +13,7 @@ import type {
   SearchByIdsResponse,
   SearchParams,
   SearchResponse,
+  VacancyResponse,
 } from '@/models';
 import type { QueryReturnValue } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 
@@ -64,6 +65,16 @@ export const api = createApi({
         };
       },
     }),
+    searchVacancyById: builder.query<VacancyResponse, string>({
+      query: (id) => {
+        return {
+          url: `vacancies/${id}/`,
+          params: {
+            published: 1,
+          },
+        };
+      },
+    }),
     searchVacanciesByIds: builder.query<SearchByIdsResponse, SearchByIdsParams>({
       queryFn: async ({ ids, page, count }, _, __, baseQuery) => {
         if (!ids.size) {
@@ -108,6 +119,7 @@ const selectTokenData = createSelector(selectAuthResult, (authResult) => ({
 export const {
   useAuthWithPasswordQuery,
   useSearchVacanciesQuery,
+  useSearchVacancyByIdQuery,
   useSearchVacanciesByIdsQuery,
   useGetIndustryCatalogQuery,
 } = api;

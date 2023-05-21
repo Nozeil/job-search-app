@@ -7,7 +7,7 @@ interface Props {
   afterBull: ReactElement<TextProps>;
 }
 
-export default function Info({ beforeBull, afterBull }: Props) {
+export default function CardInfo({ beforeBull, afterBull }: Props) {
   const theme = useMantineTheme();
   return (
     <Group spacing="sm" lh={1.31}>

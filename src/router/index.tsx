@@ -10,7 +10,7 @@ const routes = createRoutesFromElements(
   <Route element={<Layout />} errorElement={<Navigate to={PATHS.EMPTY_PAGE} replace />}>
     <Route index path={PATHS.SEARCH_PAGE} element={<SearchPage />} />
     <Route path={PATHS.FAVORITES_PAGE} element={<FavoritesPage />} />
-    <Route path={PATHS.VACANCY_PAGE} element={<VacancyPage />} />
+    <Route path={`${PATHS.VACANCY_PAGE}/:id`} element={<VacancyPage />} />
     <Route path={PATHS.EMPTY_PAGE} element={<EmptyPage />} />
   </Route>
 );

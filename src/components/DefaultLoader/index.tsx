@@ -6,7 +6,7 @@ export default function DefaultLoader() {
 
   return (
     <Stack align="center">
-      <Loader variant="bars" color={theme.colors[COLORS_KEYS.BLUE_SCALE][4]} />
+      <Loader variant="dots" color={theme.colors[COLORS_KEYS.BLUE_SCALE][4]} />
     </Stack>
   );
 }

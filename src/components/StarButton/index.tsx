@@ -1,18 +1,18 @@
-import { useLayoutEffect, useMemo, useState } from 'react';
+import { type MouseEvent, useLayoutEffect, useMemo, useState } from 'react';
 import { ActionIcon } from '@mantine/core';
-import StarIcon from '../Card/Icons/StarIcon';
 import { useStyles } from './index.hooks';
 import { effectHandler, clickHandler } from './index.utils';
 import { useAppDispatch } from '@/hooks/redux';
 import { setIds, setIdsAndPage } from '@/redux/slices/favorites';
 import { useLocation } from 'react-router-dom';
 import { PATHS } from '@/constants';
+import StarIcon from './Icons/StarIcon';
 
 interface Props {
   id: number;
 }
 
-export default function Button({ id }: Props) {
+export default function StarButton({ id }: Props) {
   const [isFavorite, setIsFavorite] = useState(false);
   const { classes } = useStyles(isFavorite);
   const dispatch = useAppDispatch();
@@ -21,7 +21,8 @@ export default function Button({ id }: Props) {
 
   useLayoutEffect(() => effectHandler(handlerArgs), [handlerArgs]);
 
-  const onClick = () => {
+  const onClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     location.pathname === PATHS.FAVORITES_PAGE
       ? clickHandler(handlerArgs, (ids) => dispatch(setIdsAndPage(ids)))
       : clickHandler(handlerArgs, (ids) => dispatch(setIds(ids)));

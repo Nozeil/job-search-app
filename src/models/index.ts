@@ -8,7 +8,7 @@ export interface AuthWithPasswordResponse {
   token_type: string;
 }
 
-interface Vacancy {
+export interface VacancyResponse {
   id: number;
   profession: string;
   town: {
@@ -20,11 +20,12 @@ interface Vacancy {
   payment_to: number;
   payment_from: number;
   currency: string;
+  vacancyRichText: string;
 }
 
-export type Vacancys = Vacancy[];
+export type VacancysResponse = VacancyResponse[];
 export interface SearchResponse {
-  objects: Vacancys;
+  objects: VacancysResponse;
   total: number;
 }
 

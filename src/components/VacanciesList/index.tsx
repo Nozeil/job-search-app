@@ -1,32 +1,50 @@
 import { type PropsWithChildren, useEffect } from 'react';
-import { Stack } from '@mantine/core';
-import Card from './Card';
-import Button from './Button';
+import { Stack, Text } from '@mantine/core';
+import CardWrapper from './CardWrapper';
 import { setInitialFavoriteIds } from './index.utils';
-import { Vacancys } from '@/models';
+import type { VacancysResponse } from '@/models';
 import useEmptyStateRedirect from '@/hooks/useEmptyStateRedirect';
+import Card from '../Card';
+import StarButton from '../StarButton';
+import Heading from './CardHeading';
+import CardInfo from '../CardInfo';
+import { createSalary } from '@/utils';
 
 interface Props {
-  data: Vacancys;
+  data: VacancysResponse;
 }
 
 export default function VacanciesList({ data, children }: PropsWithChildren<Props>) {
   useEmptyStateRedirect(data);
   useEffect(setInitialFavoriteIds, []);
 
-  const cards = data.map((item) => (
-    <Card
-      key={item.id}
-      id={item.id}
-      profession={item.profession}
-      town={item.town.title}
-      typeOfWork={item.type_of_work.title}
-      paymentFrom={item.payment_from}
-      paymentTo={item.payment_to}
-      currency={item.currency}
-      button={<Button id={item.id} />}
-    />
-  ));
+  const cards = data.map((item) => {
+    const salary = createSalary(item.payment_from, item.payment_to, item.currency);
+
+    return (
+      <CardWrapper
+        id={item.id}
+        key={item.id}
+        card={
+          <Card
+            heading={<Heading>{item.profession}</Heading>}
+            info={
+              <CardInfo
+                beforeBull={
+                  <Text weight={600} lh="inherit">
+                    {salary}
+                  </Text>
+                }
+                afterBull={<Text lh="inherit">{item.type_of_work.title}</Text>}
+              />
+            }
+            town={item.town.title}
+            button={<StarButton id={item.id} />}
+          />
+        }
+      />
+    );
+  });
 
   return (
     <Stack spacing={16}>
