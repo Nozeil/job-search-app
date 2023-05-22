@@ -5,6 +5,7 @@ export const useStyles = createStyles((theme) => ({
     display: 'grid',
     gridTemplateAreas: '"filters search" "filters vacancies"',
     gridTemplateColumns: 'max-content 1fr',
+    gridAutoRows: 'min-content 1fr',
     rowGap: theme.spacing.md,
     columnGap: 28,
 
@@ -20,6 +21,7 @@ export const useStyles = createStyles((theme) => ({
 
   search: {
     gridArea: 'search',
+    maxHeight: 'fit-content',
   },
 
   vacancies: {
