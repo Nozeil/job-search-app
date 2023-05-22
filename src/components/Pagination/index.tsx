@@ -8,7 +8,7 @@ export default function Pagination({ total, value, onChange, mt }: PaginationPro
   const { isSmallScreen } = useSmallScreenMediaQuery();
   const { siblings, spacing } = isSmallScreen
     ? { siblings: 0, spacing: 4 }
-    : { siblings: 1, spacing: 'md' };
+    : { siblings: 1, spacing: undefined };
 
   const { classes } = useStyles();
 
