@@ -17,13 +17,18 @@ import type {
 } from '@/models';
 import type { QueryReturnValue } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 
+const SECRET_KEY = import.meta.env.VITE_SECRET_KEY;
+const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET;
+const LOGIN = import.meta.env.VITE_LOGIN;
+const PASSWORD = import.meta.env.VITE_PASSWORD;
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
+
 export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://startup-summer-proxy-production.up.railway.app/2.0/',
     headers: {
-      'X-Secret-Key': 'GEU4nvd3rej*jeh.eqp',
-      'X-Api-App-Id':
-        'v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948',
+      'X-Secret-Key': SECRET_KEY,
+      'X-Api-App-Id': CLIENT_SECRET,
     },
     prepareHeaders: (headers, { getState }) => {
       const state = getState() as RootState;
@@ -39,11 +44,10 @@ export const api = createApi({
       query: () => ({
         url: 'oauth2/password',
         params: {
-          login: 'sergei.stralenia@gmail.com',
-          password: 'paralect123',
-          client_id: 2356,
-          client_secret:
-            'v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948',
+          login: LOGIN,
+          password: PASSWORD,
+          client_id: CLIENT_ID,
+          client_secret: CLIENT_SECRET,
           hr: 0,
         },
       }),
