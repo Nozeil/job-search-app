@@ -6,9 +6,13 @@ interface ControlsState {
   searchQueryValue: string;
   shouldSearch: boolean;
   selectValue: string;
+  selectQueryValue: string;
   from: NumberInputValue;
+  fromQueryValue: NumberInputValue;
   to: NumberInputValue;
+  toQueryValue: NumberInputValue;
   itemKey: number | null;
+  itemKeyQueryValue: number | null;
   page: number;
   count: number;
 }
@@ -17,9 +21,13 @@ const initialState: ControlsState = {
   searchValue: '',
   searchQueryValue: '',
   selectValue: '',
+  selectQueryValue: '',
   from: '',
+  fromQueryValue: '',
   to: '',
+  toQueryValue: '',
   itemKey: null,
+  itemKeyQueryValue: null,
   shouldSearch: false,
   page: 1,
   count: 4,
@@ -39,6 +47,10 @@ export const controlsSlice = createSlice({
     },
     setShouldSearchTrue: (state) => {
       state.searchQueryValue = state.searchValue;
+      state.selectQueryValue = state.selectValue;
+      state.fromQueryValue = state.from;
+      state.toQueryValue = state.to;
+      state.itemKeyQueryValue = state.itemKey;
       state.page = 1;
       state.shouldSearch = true;
     },
@@ -63,18 +75,27 @@ export const controlsSlice = createSlice({
     },
     resetFilters: (state) => {
       state.selectValue = '';
+      state.selectQueryValue = '';
       state.from = '';
+      state.fromQueryValue = '';
       state.to = '';
+      state.toQueryValue = '';
       state.itemKey = null;
+      state.itemKeyQueryValue = null;
       state.shouldSearch = true;
       state.page = 1;
     },
     resetControls: (state) => {
       state.searchValue = '';
+      state.searchQueryValue = '';
       state.selectValue = '';
+      state.selectQueryValue = '';
       state.from = '';
+      state.fromQueryValue = '';
       state.to = '';
+      state.toQueryValue = '';
       state.itemKey = null;
+      state.itemKeyQueryValue = null;
       state.shouldSearch = true;
       state.page = 1;
     },

@@ -22,6 +22,7 @@ export const useStyles = createStyles((theme) => {
 
       '&:hover': {
         color: colors.hover,
+        background: 'transparent',
       },
 
       '&:active': {

@@ -9,7 +9,7 @@ export default function Filters() {
 
   return (
     <Box className={classes.container}>
-      <Stack spacing={32} p="lg" sx={getXsSolidBorderStyles}>
+      <Stack className={classes.stack} spacing={32} p="lg" sx={getXsSolidBorderStyles}>
         <Heading />
         <Controls />
       </Stack>
