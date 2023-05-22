@@ -42,6 +42,7 @@ export const SELECTORS = {
 
 export const LS_KEYS = {
   IDS: 'ids',
+  AUTH_DATA: 'authData',
 } as const;
 
 export const MEDIA_QUERIES = {

@@ -1,11 +1,10 @@
-import { createSelector } from '@reduxjs/toolkit';
 import {
   type FetchBaseQueryError,
   type FetchBaseQueryMeta,
   createApi,
   fetchBaseQuery,
+  FetchArgs,
 } from '@reduxjs/toolkit/query/react';
-import type { RootState } from '@/redux/store/index.types';
 import type {
   AuthWithPasswordResponse,
   IndustryCatalogResponse,
@@ -15,7 +14,8 @@ import type {
   SearchResponse,
   VacancyResponse,
 } from '@/models';
-import type { QueryReturnValue } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
+import type { BaseQueryFn, QueryReturnValue } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
+import { LS_KEYS } from '@/constants';
 
 const SECRET_KEY = import.meta.env.VITE_SECRET_KEY;
 const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET;
@@ -23,34 +23,96 @@ const LOGIN = import.meta.env.VITE_LOGIN;
 const PASSWORD = import.meta.env.VITE_PASSWORD;
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 
-export const api = createApi({
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://startup-summer-proxy-production.up.railway.app/2.0/',
-    headers: {
-      'X-Secret-Key': SECRET_KEY,
-      'X-Api-App-Id': CLIENT_SECRET,
-    },
-    prepareHeaders: (headers, { getState }) => {
-      const state = getState() as RootState;
-      const { token, type } = selectTokenData(state);
+const baseQuery = fetchBaseQuery({
+  baseUrl: 'https://startup-summer-proxy-production.up.railway.app/2.0/',
 
-      if (token) {
-        headers.set('Authorization', `${type} ${token}`);
+  headers: {
+    'X-Secret-Key': SECRET_KEY,
+    'X-Api-App-Id': CLIENT_SECRET,
+  },
+
+  prepareHeaders: (headers) => {
+    const authData = localStorage.getItem('authData');
+
+    if (authData) {
+      const parsedAuthData = JSON.parse(authData);
+      headers.set('Authorization', `${parsedAuthData.token_type} ${parsedAuthData.access_token}`);
+    }
+  },
+});
+
+const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
+  args,
+  api,
+  extraOptions
+) => {
+  const authData = localStorage.getItem(LS_KEYS.AUTH_DATA);
+
+  if (authData) {
+    const parsedAuthData = JSON.parse(authData);
+
+    if (parsedAuthData.ttl < Date.now() / 1000) {
+      const refreshResult = await baseQuery(
+        {
+          url: 'oauth2/refresh_token',
+          params: {
+            refresh_token: parsedAuthData.refresh_token,
+            client_id: CLIENT_ID,
+            client_secret: CLIENT_SECRET,
+          },
+        },
+        api,
+        extraOptions
+      );
+
+      if (refreshResult.data) {
+        localStorage.setItem(LS_KEYS.AUTH_DATA, JSON.stringify(refreshResult.data));
       }
-    },
-  }),
+    }
+  }
+
+  const result = await baseQuery(args, api, extraOptions);
+
+  return result;
+};
+
+export const api = createApi({
+  baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
     authWithPassword: builder.query<AuthWithPasswordResponse, void>({
-      query: () => ({
-        url: 'oauth2/password',
-        params: {
-          login: LOGIN,
-          password: PASSWORD,
-          client_id: CLIENT_ID,
-          client_secret: CLIENT_SECRET,
-          hr: 0,
-        },
-      }),
+      queryFn: async (_, __, ___, baseQuery) => {
+        const authData = localStorage.getItem(LS_KEYS.AUTH_DATA);
+
+        if (authData) {
+          const parsedAuthData = JSON.parse(authData);
+          return {
+            data: {
+              ...parsedAuthData,
+            },
+          };
+        } else {
+          const result = await baseQuery({
+            url: 'oauth2/password',
+            params: {
+              login: LOGIN,
+              password: PASSWORD,
+              client_id: CLIENT_ID,
+              client_secret: CLIENT_SECRET,
+              hr: 0,
+            },
+          });
+
+          if (result.data) {
+            localStorage.setItem(LS_KEYS.AUTH_DATA, JSON.stringify(result.data));
+          }
+
+          return result as QueryReturnValue<
+            AuthWithPasswordResponse,
+            FetchBaseQueryError,
+            FetchBaseQueryMeta
+          >;
+        }
+      },
     }),
     searchVacancies: builder.query<SearchResponse, SearchParams>({
       query: ({ keyword, from, to, catalogues, count, page }) => {
@@ -113,12 +175,6 @@ export const api = createApi({
     }),
   }),
 });
-
-const selectAuthResult = api.endpoints.authWithPassword.select();
-const selectTokenData = createSelector(selectAuthResult, (authResult) => ({
-  token: authResult?.data?.access_token,
-  type: authResult.data?.token_type,
-}));
 
 export const {
   useAuthWithPasswordQuery,
