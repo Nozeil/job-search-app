@@ -3,6 +3,7 @@ import type { NumberInputValue } from '@/types';
 
 interface ControlsState {
   searchValue: string;
+  searchQueryValue: string;
   shouldSearch: boolean;
   selectValue: string;
   from: NumberInputValue;
@@ -14,6 +15,7 @@ interface ControlsState {
 
 const initialState: ControlsState = {
   searchValue: '',
+  searchQueryValue: '',
   selectValue: '',
   from: '',
   to: '',
@@ -31,11 +33,12 @@ export const controlsSlice = createSlice({
       state.searchValue = actionPayload.payload;
     },
     setSearchData: (state, actionPayload: PayloadAction<string>) => {
-      state.searchValue = actionPayload.payload;
+      state.searchQueryValue = actionPayload.payload;
       state.page = 1;
       state.shouldSearch = true;
     },
     setShouldSearchTrue: (state) => {
+      state.searchQueryValue = state.searchValue;
       state.page = 1;
       state.shouldSearch = true;
     },
