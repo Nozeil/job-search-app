@@ -1,7 +1,6 @@
-import { Flex, Text, TextProps, useMantineTheme } from '@mantine/core';
-import { COLORS_KEYS } from '@/constants';
+import { Flex, Text, TextProps } from '@mantine/core';
 import type { ReactElement } from 'react';
-import useSmallScreenMediaQuery from '@/hooks/useSmallScreenMediaQuery';
+import { useStyles } from './index.hooks';
 
 interface Props {
   beforeBull: ReactElement<TextProps>;
@@ -9,19 +8,12 @@ interface Props {
 }
 
 export default function CardInfo({ beforeBull, afterBull }: Props) {
-  const theme = useMantineTheme();
-  const { isSmallScreen, component } = useSmallScreenMediaQuery(
-    <Text lh="inherit" color={theme.colors[COLORS_KEYS.GREY_SCALE][5]}>
-      &bull;
-    </Text>,
-    null
-  );
-  const direction = isSmallScreen ? 'column' : 'row';
+  const { classes } = useStyles();
 
   return (
-    <Flex gap="sm" direction={direction} lh={1.31}>
+    <Flex className={classes.container}>
       {beforeBull}
-      {component}
+      <Text className={classes.bull}>&bull;</Text>
       {afterBull}
     </Flex>
   );

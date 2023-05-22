@@ -1,24 +1,23 @@
 import Filters from '@/components/Filters';
 import SearchVacancies from '@/components/SearchVacancies';
-import SearchBar from '@/components/SearchVacancies/SearchBar';
-import useSmallScreenMediaQuery from '@/hooks/useSmallScreenMediaQuery';
-import { Flex } from '@mantine/core';
+import SearchBar from '@/components/SearchBar';
+import { Box } from '@mantine/core';
+import { useStyles } from './index.hooks';
 
 export default function Search() {
-  const { isSmallScreen, component: topComponent } = useSmallScreenMediaQuery(
-    <Filters />,
-    <SearchBar />
-  );
+  const { classes } = useStyles();
 
   return (
-    <Flex
-      gap={28}
-      sx={{
-        flexDirection: isSmallScreen ? 'column' : 'row',
-      }}
-    >
-      {topComponent}
-      <SearchVacancies />
-    </Flex>
+    <Box className={classes.box}>
+      <Box className={classes.filters}>
+        <Filters />
+      </Box>
+      <Box className={classes.search}>
+        <SearchBar />
+      </Box>
+      <Box className={classes.vacancies}>
+        <SearchVacancies />
+      </Box>
+    </Box>
   );
 }

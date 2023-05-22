@@ -45,5 +45,6 @@ export const LS_KEYS = {
 } as const;
 
 export const MEDIA_QUERIES = {
-  SMALL: '(max-width: 810px)',
+  SMALL: 810,
+  SMALL_QUERY: '(max-width: 810px)',
 } as const;

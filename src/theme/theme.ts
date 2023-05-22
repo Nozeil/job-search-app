@@ -13,5 +13,8 @@ export const theme = {
     Input: INPUT,
     Button: BUTTON,
   },
+  breakpoints: {
+    sm: '51em',
+  },
   transitionTimingFunction: 'ease-in-out',
 } as const;

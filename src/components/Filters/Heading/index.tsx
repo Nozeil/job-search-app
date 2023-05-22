@@ -1,13 +1,12 @@
 import { Flex, Title, rem } from '@mantine/core';
 import ResetButton from './ResetButton';
-import useSmallScreenMediaQuery from '@/hooks/useSmallScreenMediaQuery';
+import { useStyles } from './index.hooks';
 
 export default function Heading() {
-  const { isSmallScreen } = useSmallScreenMediaQuery();
-  const gap = isSmallScreen ? 20 : 67;
+  const { classes } = useStyles();
 
   return (
-    <Flex gap={gap} justify="space-between" align="center">
+    <Flex className={classes.container}>
       <Title size={rem(20)} fw="bold" lh={1}>
         Фильтры
       </Title>

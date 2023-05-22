@@ -6,7 +6,7 @@ export default function useSmallScreenMediaQuery(
   desktopComponent?: ReactElement,
   mobileComponent?: ReactElement | null
 ) {
-  const isSmallScreen = useMediaQuery(MEDIA_QUERIES.SMALL);
+  const isSmallScreen = useMediaQuery(MEDIA_QUERIES.SMALL_QUERY);
   const component = isSmallScreen ? mobileComponent : desktopComponent;
 
   return { isSmallScreen, component };

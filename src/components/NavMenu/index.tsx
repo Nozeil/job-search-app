@@ -1,12 +1,11 @@
 import MobileMenu from './MobileMenu';
-import Menu from './Menu';
-import useSmallScreenMediaQuery from '@/hooks/useSmallScreenMediaQuery';
+import DesktopMenu from './DesktopMenu';
 
 export default function NavMenu() {
-  const { component: nav } = useSmallScreenMediaQuery(
-    <Menu flexDirection="row" gap={60} />,
-    <MobileMenu />
+  return (
+    <>
+      <DesktopMenu />
+      <MobileMenu />
+    </>
   );
-
-  return nav ?? null;
 }

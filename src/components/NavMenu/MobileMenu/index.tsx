@@ -1,4 +1,4 @@
-import { Group, Burger, Transition, Paper, rem } from '@mantine/core';
+import { Group, Burger, Transition, Paper, rem, Box } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useStyles } from './index.hooks';
 import Menu from '../Menu';
@@ -11,7 +11,7 @@ export default function MobileMenu() {
   const { classes } = useStyles();
 
   return (
-    <>
+    <Box className={classes.container}>
       <Group h="100%" position="right">
         <Burger onClick={toggle} opened={opened} />
       </Group>
@@ -22,6 +22,6 @@ export default function MobileMenu() {
           </Paper>
         )}
       </Transition>
-    </>
+    </Box>
   );
 }
