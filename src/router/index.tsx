@@ -5,13 +5,15 @@ import FavoritesPage from '@/pages/Favorites';
 import EmptyPage from '@/pages/Empty';
 import { PATHS } from '@/constants';
 import VacancyPage from '@/pages/Vacancy';
+import { NotFoundPage } from '@/pages/NotFound';
 
 const routes = createRoutesFromElements(
-  <Route element={<Layout />} errorElement={<Navigate to={PATHS.EMPTY_PAGE} replace />}>
+  <Route element={<Layout />} errorElement={<Navigate to={PATHS.NOT_FOUND} replace />}>
     <Route index path={PATHS.SEARCH_PAGE} element={<SearchPage />} />
     <Route path={PATHS.FAVORITES_PAGE} element={<FavoritesPage />} />
     <Route path={`${PATHS.VACANCY_PAGE}/:id`} element={<VacancyPage />} />
     <Route path={PATHS.EMPTY_PAGE} element={<EmptyPage />} />
+    <Route path={PATHS.NOT_FOUND} element={<NotFoundPage />} />
   </Route>
 );
 

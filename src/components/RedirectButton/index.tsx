@@ -4,7 +4,7 @@ import { resetControls } from '@/redux/slices/controls';
 import { Button } from '@mantine/core';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-export default function EmptyStateButton() {
+export default function RedirectButton() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useAppDispatch();

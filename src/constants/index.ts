@@ -5,6 +5,7 @@ export const PATHS = {
   FAVORITES_PAGE: '/favorites',
   VACANCY_PAGE: '/vacancy',
   EMPTY_PAGE: '/empty',
+  NOT_FOUND: '/404',
 } as const;
 
 export const FONTS = {

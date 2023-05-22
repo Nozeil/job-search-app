@@ -1,6 +1,6 @@
 import { Stack, Image, Title, rem } from '@mantine/core';
 import empty from '@/assets/empty.svg';
-import EmptyStateButton from '@/components/EmptyStateButton';
+import RedirectButton from '@/components/RedirectButton';
 
 export default function EmptyPage() {
   return (
@@ -9,7 +9,7 @@ export default function EmptyPage() {
       <Title size={rem(24)} fw="bold" align="center" color="#343A40">
         Упс, здесь еще ничего нет!
       </Title>
-      <EmptyStateButton />
+      <RedirectButton />
     </Stack>
   );
 }
