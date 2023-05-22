@@ -63,6 +63,15 @@ export const controlsSlice = createSlice({
       state.shouldSearch = true;
       state.page = 1;
     },
+    resetControls: (state) => {
+      state.searchValue = '';
+      state.selectValue = '';
+      state.from = '';
+      state.to = '';
+      state.itemKey = null;
+      state.shouldSearch = true;
+      state.page = 1;
+    },
   },
 });
 
@@ -76,5 +85,6 @@ export const {
   setItemKey,
   setPage,
   resetFilters,
+  resetControls,
 } = controlsSlice.actions;
 export default controlsSlice.reducer;

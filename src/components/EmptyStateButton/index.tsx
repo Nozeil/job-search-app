@@ -1,6 +1,6 @@
 import { PATHS, FONTS, COLORS_KEYS } from '@/constants';
 import { useAppDispatch } from '@/hooks/redux';
-import { resetFilters } from '@/redux/slices/controls';
+import { resetControls } from '@/redux/slices/controls';
 import { Button } from '@mantine/core';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export default function EmptyStateButton() {
 
   const onClick = () => {
     if (location.state === PATHS.SEARCH_PAGE) {
-      dispatch(resetFilters());
+      dispatch(resetControls());
     }
     navigate(PATHS.SEARCH_PAGE);
   };
