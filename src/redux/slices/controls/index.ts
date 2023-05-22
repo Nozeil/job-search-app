@@ -29,6 +29,9 @@ export const controlsSlice = createSlice({
   reducers: {
     setSearchValue: (state, actionPayload: PayloadAction<string>) => {
       state.searchValue = actionPayload.payload;
+    },
+    setSearchData: (state, actionPayload: PayloadAction<string>) => {
+      state.searchValue = actionPayload.payload;
       state.page = 1;
       state.shouldSearch = true;
     },
@@ -77,6 +80,7 @@ export const controlsSlice = createSlice({
 
 export const {
   setSearchValue,
+  setSearchData,
   setShouldSearchTrue,
   setShouldSearchFalse,
   setSalaryFrom,
