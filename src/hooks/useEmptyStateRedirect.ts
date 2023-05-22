@@ -1,9 +1,9 @@
 import { PATHS } from '@/constants';
-import { Vacancys } from '@/models';
+import { VacancysResponse } from '@/models';
 import { useLayoutEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export default function useEmptyStateRedirect(data: Vacancys) {
+export default function useEmptyStateRedirect(data: VacancysResponse) {
   const location = useLocation();
   const navigate = useNavigate();
 

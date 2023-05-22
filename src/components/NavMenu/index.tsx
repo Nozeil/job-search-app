@@ -8,5 +8,5 @@ export default function NavMenu() {
     <MobileMenu />
   );
 
-  return nav;
+  return nav ?? null;
 }
