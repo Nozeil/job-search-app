@@ -1,7 +1,7 @@
 import { Container } from '@mantine/core';
 import { useAppSelector } from '@/hooks/redux';
 import { selectFavoritesPaginationPage, selectFavoritesCount } from '@/redux/selectors';
-import { useSearchVacanciesByIdsQuery } from '@/services';
+import { useSearchVacanciesByIdsQuery } from '@/services/endpoints/searchVacanciesByIds';
 import VacanciesList from '../VacanciesList';
 import { generateIdsForRequest } from './index.utils';
 import FavoritesPagination from './FavoritesPagination';

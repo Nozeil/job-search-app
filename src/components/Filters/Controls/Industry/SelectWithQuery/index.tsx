@@ -1,4 +1,4 @@
-import { useGetIndustryCatalogQuery } from '@/services';
+import { useGetIndustryCatalogQuery } from '@/services/endpoints/getIndustryCatalog';
 import { useMemo } from 'react';
 import { adaptData } from './index.utils';
 import Select from '../Select';

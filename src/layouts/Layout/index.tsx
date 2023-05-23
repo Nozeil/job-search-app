@@ -2,7 +2,7 @@ import { AppShell, Container, useMantineTheme } from '@mantine/core';
 import { Outlet } from 'react-router-dom';
 import Header from '../Header';
 import { COLORS_KEYS } from '@/constants';
-import { useAuthWithPasswordQuery } from '@/services';
+import { useAuthWithPasswordQuery } from '@/services/endpoints/authWithPassword';
 import AuthLoader from '@/components/AuthLoader';
 
 export default function Layout() {

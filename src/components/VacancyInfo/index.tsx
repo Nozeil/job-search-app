@@ -1,7 +1,7 @@
 import { Stack, Text } from '@mantine/core';
 import { useParams } from 'react-router-dom';
 import { skipToken } from '@reduxjs/toolkit/dist/query';
-import { useSearchVacancyByIdQuery } from '@/services';
+import { useSearchVacancyByIdQuery } from '@/services/endpoints/searchVacancyById';
 import { createSalary } from '@/utils';
 import CardInfo from '../CardInfo';
 import StarButton from '../StarButton';

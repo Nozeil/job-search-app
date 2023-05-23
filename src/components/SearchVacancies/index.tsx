@@ -1,7 +1,7 @@
 import VacanciesList from '../VacanciesList';
 import { useFilters } from '@/hooks/useFilters';
 import { useShouldSearch } from '@/hooks/useShouldSearch';
-import { useSearchVacanciesQuery } from '@/services';
+import { useSearchVacanciesQuery } from '@/services/endpoints/searchVacancies';
 import DefaultLoader from '../DefaultLoader';
 import SearchPagination from './SearchPagination';
 

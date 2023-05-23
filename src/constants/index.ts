@@ -49,3 +49,9 @@ export const MEDIA_QUERIES = {
   SMALL: 810,
   SMALL_QUERY: '(max-width: 810px)',
 } as const;
+
+export const URLS = {
+  AUTH: 'oauth2/password',
+  CATALOGUES: 'catalogues',
+  VACANCIES: 'vacancies',
+} as const;
