@@ -4,7 +4,7 @@ const SECRET_KEY = import.meta.env.VITE_SECRET_KEY;
 const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET;
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://startup-summer-proxy-production.up.railway.app/2.0/',
+  baseUrl: 'https://jobored-proxy-xkxn.onrender.com/2.0/',
 
   headers: {
     'X-Secret-Key': SECRET_KEY,
